@@ -14,30 +14,40 @@
   </head>
 
   <body>
-    <nav class=" navbar navbar-dark bg-dark fixed-top navbar-expand" id="myNavbar">
+    <nav class="navbar navbar-dark bg-dark fixed-top navbar-expand" id="myNavbar">
+      <%= link_to "Vinocal", "#", class: "navbar-brand" %>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
       <div class="collapse navbar-collapse">
-        <ul class="navbar-nav ml-auto ">
+        <ul class="navbar-nav ml-auto">
 
           <li class="nav-item">
-            <%= link_to "Home", root_path %>
+            <%= link_to "Home", root_path, class: "nav-link" %>
           </li>
 
           <li class="nav-item">
-            <%= link_to "About", simple_pages_about_path %>
+            <%= link_to "About", simple_pages_about_path, class: "nav-link" %>
           </li>
 
           <li class="nav-item">
-            <%= link_to "Contact", simple_pages_contact_path %>
+            <%= link_to "Contact", simple_pages_contact_path, class: "nav-link" %>
           </li>
 
         </ul>
       </div>
     </nav>
-    <div id=content>
-    <%= yield %>
+    <div id="content">
+      <%= yield %>
     </div>
+
     <footer>
-      &copy; <%= Time.now.year %> Vinocal Ltd.
+      <div class="container">
+        <p class="text-muted text-center">
+          &copy; <%= Time.now.year %> Vinocal Ltd.
+        </p>
+      </div>
     </footer>
+
   </body>
 </html>

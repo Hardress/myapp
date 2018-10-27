@@ -1,10 +1,25 @@
+html {
+  position: relative;
+  min-height: 100%;
+}
+
 body {
   background-color: #fff;
   color: #333;
-  margin: 33px;
+  margin: 33px 0 60px 0;
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
   line-height: 18px;
+  padding-top: 34px;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: #f5f5f5;
 }
 
 p, ol, ul, td {
@@ -81,4 +96,8 @@ div {
 
 label {
   display: block;
+}
+
+#content {
+  padding: 33px;
 }
