@@ -16,6 +16,7 @@
 
   <tbody>
     <% @products.each do |product| %>
+      <%= render @products %>
       <tr>
         <td><%= product.name %></td>
         <td><%= product.description %></td>
