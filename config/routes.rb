@@ -1,11 +1,18 @@
 Rails.application.routes.draw do
 
   # landing page reroute
-  root 'simple_pages#landing_page'
-  resources :products
-  resources :orders, only: [:index, :show, :create, :destroy]
-  get 'simple_pages/about'
-  get 'simple_pages/contact'
-  get 'simple_pages/index'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  resources :users
+  resources :products do
+  resources :comments
+end
+get 'simple_pages/about'
+get 'simple_pages/contact'
+get 'simple_pages/index'
+get 'simple_pages/products'
+get 'simple_pages/landing_page'
+get 'simple_pages/thank_you'
+  post 'simple_pages/thank_you'
+root 'simple_pages#index'
+
+resources :orders, only: [:index, :show]
 end
