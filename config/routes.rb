@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  devise_for :users
   # landing page reroute
   resources :users
   resources :products do
