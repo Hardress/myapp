@@ -1,16 +1,19 @@
 class SimplePagesController < ApplicationController
-  def index
-    @products = Product.all
+  def landing_page
+     @featured_product = Product.first
+     @products = Product.all
   end
 
-	def thank_you
-		@name = params[:name]
-		@email = params[:email]
-		@message = params[:message]
-    UserMailer.contact_form(@email, @name, @message).deliver_now
-	end
+  def about
+  end
 
-  def landing_page
-    @products = Product.limit(2)
+  def contact
+  end
+
+  def thank_you
+    @name = params[:name]
+    @email = params[:email]
+    @message = params[:message]
+    UserMailer.contact_form(@email, @name, @message).deliver_now
   end
 end
