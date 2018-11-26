@@ -1,35 +1,53 @@
-<p id="notice"><%= notice %></p>
-<p class="col-sm">
-<%= @product.highest_rating_comment %>
-<i class="far fa-star"></i>
-</p>
+<div class="container-fluid product-show">
+  <div class="row" data-product-id="<%= @product.id %>">
+    <div class="col-sm-8 col-md-6">
+        <%= image_tag(@product.image_url, class: "img-fluid img-zoom img-responsive", data_zoom_image: @product.image_url)%>
+        <%= link_to 'Edit', edit_product_path(@product) %> |
+        <%= link_to 'Back', products_path %>
+    </div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @product.name %>
-</p>
+    <div class="col-sm-4 col-md-6">
 
-<p>
-  <strong>Description:</strong>
-  <%= @product.description %>
-</p>
+      <% cache @product do %>
 
-<p>
-  <strong>Image url:</strong>
-  <%= @product.image_url %>
-</p>
+        <h3 class="product-show-name">
+          <%= @product.name %>
+        </h3>
 
-<p>
-  <strong>Color:</strong>
-  <%= @product.color %>
-</p>
+        <p class="product-show-description">
+          <%= @product.description %>
+        </p>
 
-<p>
-  <strong>Price:</strong>
-  <%= @product.price %>
-</p>
+        <p class="product-show-color">
+          <strong>Color:</strong>
+          <%= @product.color %>
+        </p>
 
-<%= link_to 'Edit', edit_product_path(@product) %> |
-<%= link_to 'Back', products_path %>
-<%= render 'new_comment' %>
-<%= render 'comments' %>
+        <p><strong>Average rating:</strong>
+          <div id="average-rating" class="rated" data-score="<%= @product.average_rating %>">
+          </div>
+        </p>
+
+        <br>
+
+        <p class="product-show-price"><strong>Price:</strong>
+          <strong><%= @product.price %> €</strong>
+        </p>
+
+
+        <%= form_with(url: '/payments/create') do |form| %>
+         <%= hidden_field_tag(:product_id, @product.id) %>
+         <%= render partial: "devise/shared/stripe_checkout_button" %>
+
+        <% end %>
+
+
+    </div>
+  </div>
+<% end %>
+
+
+  <%= render 'new_comment'%>
+  <div class="badge badge-warning" style="display:none" role="alert">A new comment was posted!</div>
+  <%= render 'comments' %>
+</div>

@@ -6,6 +6,10 @@ class ProductsController < ApplicationController
     if params[:q]
       search_term = params[:q]
       @products = Product.search(search_term)
+      if @products.nil?
+        flash.now[:notice] = "We're sorry, we don't have anything related to #{search_term}. Please check out the other products that we offer."
+        @products = Product.all
+      end
     else
       @products = Product.all
     end
@@ -14,7 +18,7 @@ class ProductsController < ApplicationController
   # GET /products/1
   # GET /products/1.json
   def show
-    @comments = @product.comments.order('created_at DESC')
+    @comments = @product.comments.page(params[:page]).order('created_at DESC')
   end
 
   # GET /products/new
@@ -75,5 +79,7 @@ class ProductsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
       params.require(:product).permit(:name, :description, :color, :price, :image_url)
+      accepts_nested_attributes_for :comments, update_only: true
     end
+
 end

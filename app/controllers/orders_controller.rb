@@ -1,16 +1,19 @@
 class OrdersController < ApplicationController
-  def index
-  end
+  before_action :authenticate_user!
+    def index
+      @orders = Order.includes(:product).all
+    end
 
-  def show
-  end
+    def show
+      @order = Order.find(params[:id])
+    end
 
-  def new
-  end
+    def new
+    end
 
-  def create
-  end
+    def create
+    end
 
-  def destroy
+    def destroy
+    end
   end
-end

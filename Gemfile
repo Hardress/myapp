@@ -79,4 +79,6 @@ gem 'rails-controller-testing'
 
 gem 'devise'
 
+gem 'stripe'
+
 gem 'cancancan', '~> 1.10'
