@@ -1,6 +1,20 @@
-<div class="col-sm">
-  <h1><%= link_to product.name, product %></h1>
-  <%= image_tag product.image_url %>
-  <p><%= product.description %></p>
-  <strong>$ <%= product.price %></strong>
-</div><!-- /col -->
+<div class="col-xs-12 col-md-6">
+  <% cache product do %>
+    <h3><%=link_to product.name, product %></h3>
+    <% logger.debug "Product name is #{product.name}"%>
+    <%= image_tag(product.image_url, class: "img-responsive product_img", alt: product.name) if product.image_url %>
+    <p>
+      <strong>Brand: </strong><%= product.brand %>
+    </p>
+    <p>
+      <strong><%= number_to_currency(product.price.to_f, unit: "$", separator: ",") %></strong>
+    </p>
+  <% end %>
+  <!-- link to create edit or delete products only available to admin -->
+
+  <% if signed_in? && current_user.admin? %>
+    <!-- <%= link_to 'Show', product %> -->
+    <%= link_to 'Edit', edit_product_path(product) %>
+    <%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <% end %>
+</div>
