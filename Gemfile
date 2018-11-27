@@ -83,4 +83,6 @@ gem 'stripe'
 
 gem 'dalli'
 
+gem 'redis-rails'
+
 gem 'cancancan', '~> 1.10'
