@@ -81,4 +81,6 @@ gem 'devise'
 
 gem 'stripe'
 
+gem 'dalli'
+
 gem 'cancancan', '~> 1.10'
