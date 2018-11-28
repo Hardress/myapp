@@ -5,6 +5,6 @@ test:
   adapter: async
 
 production:
-  adapter: redis
-  url: <%= ENV.fetch("REDIS_URL") { "redis://localhost:6379/1" } %>
+  adapter: postgresql
+  url: postgres://ezcimsonzwnmvj:11decd8456fc163438f760224721adb2db981f1a40c4a77ff22c973f520c83fb@ec2-174-129-18-98.compute-1.amazonaws.com:5432/deepaa4mh3p87b
   channel_prefix: myapp_production
